@@ -1,0 +1,30 @@
+spring:
+  application.name: accounts-service
+  kafka:
+    bootstrap-servers: inviting-camel-5620-eu1-kafka.upstash.io:9092
+    properties:
+      security.protocol: SASL_SSL
+      sasl.mechanism: SCRAM-SHA-256
+      sasl.jaas.config: org.apache.kafka.common.security.scram.ScramLoginModule required username="aW52aXRpbmctY2FtZWwtNTYyMCS_oQIE0RcexwCPyvUyW7FgTtZx9y36v1Zttps" password="Dla49RiLHz0Qh6X2X75y4Kya3WMS3hl71N0xUaYFkkaksssQgIGEvKnFZkQLo2XUyU6Vmg==";
+    consumer:
+      key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: "*"
+        isolation.level: read_committed
+      enable-auto-commit: false
+#      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      transaction-id-prefix: tx-
+  output.ansi.enabled: ALWAYS
+
+logging:
+  pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%15.15t]){yellow} %clr(:){red} %clr(%m){faint}%n"
+#  level:
+#    org.springframework.transaction: trace
+#    org.springframework.kafka.transaction: debug
+#logging.level.org.springframework.transaction=trace
+#logging.level.org.springframework.kafka.transaction=debug
+#logging.level.org.springframework.jdbc=debug
