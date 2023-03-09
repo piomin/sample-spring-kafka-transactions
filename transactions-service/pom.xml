@@ -15,6 +15,7 @@
 
     <properties>
         <java.version>19</java.version>
+        <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
     </properties>
 
     <dependencies>
