@@ -6,12 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.kafka.annotation.EnableKafka;
-import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.transaction.annotation.Transactional;
 import pl.piomin.services.accounts.domain.Account;
 import pl.piomin.services.accounts.listener.TransactionsListener;
 import pl.piomin.services.accounts.repository.AccountRepository;
-import pl.piomin.services.common.model.Order;
 
 import javax.annotation.PostConstruct;
 import java.util.Random;
@@ -37,4 +34,5 @@ public class AccountsService {
             repository.save(new Account(r.nextInt(1000, 10000)));
         }
     }
+    
 }

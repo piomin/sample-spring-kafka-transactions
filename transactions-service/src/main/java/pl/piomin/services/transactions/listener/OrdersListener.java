@@ -2,15 +2,12 @@ package pl.piomin.services.transactions.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.jpa.repository.Lock;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.piomin.services.common.model.Order;
 import pl.piomin.services.transactions.domain.OrderGroup;
 import pl.piomin.services.transactions.repository.OrderGroupRepository;
-
-import javax.persistence.LockModeType;
 
 @Service
 public class OrdersListener {
