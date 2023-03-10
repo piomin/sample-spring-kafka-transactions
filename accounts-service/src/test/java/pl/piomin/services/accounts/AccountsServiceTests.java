@@ -1,7 +1,6 @@
 package pl.piomin.services.accounts;
 
 import org.apache.kafka.clients.consumer.ConsumerRecord;
-import org.apache.kafka.common.security.auth.SecurityProtocol;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -33,7 +32,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
         brokerProperties = {
            "offsets.topic.replication.factor=1",
            "transaction.state.log.replication.factor=1",
-           "transaction.state.log.min.isr=1"
+           "transaction.state.log.min.isr=1",
+           "num.partitions=1"
         },
         bootstrapServersProperty = "spring.kafka.bootstrap-servers")
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
@@ -67,11 +67,12 @@ public class AccountsServiceTests {
     @Test
     @org.junit.jupiter.api.Order(2)
     void reject() throws ExecutionException, InterruptedException, TimeoutException {
-        Order o = new Order(1L, 3L, 4L, 10001, "NEW", 1L);
+        Order o = new Order(2L, 3L, 4L, 10001, "NEW", 2L);
         SendResult<Long, Order> r = template.executeInTransaction(ko -> ko.send("transactions", o.getId(), o))
                 .get(1000, TimeUnit.MILLISECONDS);
         LOG.info("Sent: {}", r.getProducerRecord().value());
 
+        Thread.sleep(1000);
         template.setConsumerFactory(factory);
         ConsumerRecord<Long, Order> rec = template.receive("orders", 0, 1, Duration.ofSeconds(5));
         assertNotNull(rec);

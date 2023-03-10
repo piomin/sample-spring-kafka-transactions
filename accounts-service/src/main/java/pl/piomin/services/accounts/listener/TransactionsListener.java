@@ -4,11 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.piomin.services.accounts.domain.Account;
 import pl.piomin.services.accounts.repository.AccountRepository;
 import pl.piomin.services.common.model.Order;
+
+import java.util.concurrent.CompletableFuture;
 
 @Service
 public class TransactionsListener {
@@ -52,6 +55,11 @@ public class TransactionsListener {
             order.setStatus("FAILED");
         }
         LOG.info("After processing: {}", order);
-        kafkaTemplate.send("orders", order.getId(), order);
+        CompletableFuture<SendResult<Long, Order>> result = kafkaTemplate.send("orders", order.getId(), order);
+        result.whenComplete((sr, ex) ->
+                LOG.info("Sent(key={},partition={}): {}",
+                        sr.getProducerRecord().partition(),
+                        sr.getProducerRecord().key(),
+                        sr.getProducerRecord().value()));
     }
 }

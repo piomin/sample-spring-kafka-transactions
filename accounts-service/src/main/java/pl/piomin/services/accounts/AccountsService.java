@@ -1,5 +1,6 @@
 package pl.piomin.services.accounts;
 
+import jakarta.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,6 @@ import pl.piomin.services.accounts.domain.Account;
 import pl.piomin.services.accounts.listener.TransactionsListener;
 import pl.piomin.services.accounts.repository.AccountRepository;
 
-import javax.annotation.PostConstruct;
 import java.util.Random;
 
 @SpringBootApplication
