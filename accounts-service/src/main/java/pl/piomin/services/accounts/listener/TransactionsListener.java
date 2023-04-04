@@ -58,8 +58,8 @@ public class TransactionsListener {
         CompletableFuture<SendResult<Long, Order>> result = kafkaTemplate.send("orders", order.getId(), order);
         result.whenComplete((sr, ex) ->
                 LOG.info("Sent(key={},partition={}): {}",
-                        sr.getProducerRecord().partition(),
                         sr.getProducerRecord().key(),
+                        sr.getProducerRecord().partition(),
                         sr.getProducerRecord().value()));
     }
 }
