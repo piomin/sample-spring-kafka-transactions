@@ -11,6 +11,7 @@
         <module>transactions-service</module>
         <module>accounts-service</module>
         <module>common</module>
+        <module>no-transactions-service</module>
     </modules>
     <packaging>pom</packaging>
 
