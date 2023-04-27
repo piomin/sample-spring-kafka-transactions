@@ -30,8 +30,7 @@ public class NoTransactionsListener {
     @KafkaListener(
             id = "transactions",
             topics = "transactions",
-            groupId = "a",
-            concurrency = "3")
+            groupId = "a")
     @Transactional
     public void listen(Order order) {
         LOG.info("Received: {}", order);
