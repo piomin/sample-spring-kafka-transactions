@@ -6,11 +6,22 @@ spring:
       key-deserializer: org.apache.kafka.common.serialization.LongDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
-        spring.json.trusted.packages: "*"
+        "[spring.json.value.default.type]": "pl.piomin.services.common.model.Order"
+        "[spring.json.trusted.packages]": "pl.piomin.services.common.model"
+        "[spring.json.use.type.headers]": false
     producer:
       key-serializer: org.apache.kafka.common.serialization.LongSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   output.ansi.enabled: ALWAYS
 
+
+#  json:
+#    use:
+#      type:
+#        headers: false
+#    value:
+#      default:
+#        type: pl.piomin.services.common.model.Order
+
 logging:
-  pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%15.15t]){yellow} %clr(:){red} %clr(%m){faint}%n"
+  pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%18.18t]){yellow} %clr(:){red} %clr(%m){faint}%n"

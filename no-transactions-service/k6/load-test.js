@@ -12,13 +12,17 @@ const writer = new Writer({
 
 const schemaRegistry = new SchemaRegistry();
 
-export default function () {
+export function setup() {
+  return { index: 1 };
+}
+
+export default function (data) {
   writer.produce({
     messages: [
       {
         value: schemaRegistry.serialize({
           data: {
-            id: 1,
+            id: data.index++,
             sourceAccountId: randomIntBetween(1, 100),
             targetAccountId: randomIntBetween(1, 100),
             amount: randomIntBetween(10, 50),

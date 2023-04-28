@@ -73,9 +73,10 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
+                ", sourceAccountId=" + sourceAccountId +
+                ", targetAccountId=" + targetAccountId +
                 ", amount=" + amount +
                 ", status='" + status + '\'' +
-                ", groupId=" + groupId +
                 '}';
     }
 }

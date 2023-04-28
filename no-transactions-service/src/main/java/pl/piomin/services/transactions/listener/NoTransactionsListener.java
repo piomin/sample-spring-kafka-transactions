@@ -53,7 +53,7 @@ public class NoTransactionsListener {
         } else {
             order.setStatus("FAILED");
         }
-        LOG.info("After processing: {}", order);
+        LOG.info("Processed: order->{}, srcAcc->{}, trgAcc->{}", order, accountSource, accountTarget);
         CompletableFuture<SendResult<Long, Order>> result = kafkaTemplate.send("orders", order.getId(), order);
         result.whenComplete((sr, ex) ->
                 LOG.info("Sent(key={},partition={}): {}",
