@@ -23,8 +23,8 @@ export default function (data) {
         value: schemaRegistry.serialize({
           data: {
             id: data.index++,
-            sourceAccountId: randomIntBetween(1, 100),
-            targetAccountId: randomIntBetween(1, 100),
+            sourceAccountId: randomIntBetween(1, 1000),
+            targetAccountId: randomIntBetween(1, 1000),
             amount: randomIntBetween(10, 50),
             status: "NEW"
           },

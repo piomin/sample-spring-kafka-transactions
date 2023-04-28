@@ -29,7 +29,7 @@ public class NoTransactionsService {
 
     @PostConstruct
     public void init() {
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1000; i++) {
             repository.save(new Account(r.nextInt(1000, 10000)));
         }
     }
