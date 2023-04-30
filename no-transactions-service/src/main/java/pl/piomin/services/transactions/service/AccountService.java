@@ -4,13 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.piomin.services.common.model.Order;
 import pl.piomin.services.transactions.domain.Account;
 import pl.piomin.services.transactions.domain.OrderDTO;
-import pl.piomin.services.transactions.listener.NoTransactionsListener;
 import pl.piomin.services.transactions.repository.AccountRepository;
 
 import java.util.Random;

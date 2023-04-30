@@ -17,7 +17,7 @@ public class NoTransactionsListener {
             .getLogger(NoTransactionsListener.class);
 
     AccountService service;
-    ExecutorService executorService = Executors.newFixedThreadPool(20);
+    ExecutorService executorService = Executors.newFixedThreadPool(30);
 
     public NoTransactionsListener(AccountService service) {
         this.service = service;
@@ -26,7 +26,8 @@ public class NoTransactionsListener {
     @KafkaListener(
             id = "transactions",
             topics = "transactions",
-            groupId = "a")
+            groupId = "a"
+    )
     public void listen(Order order) {
         LOG.info("Received: {}", order);
         service.process(order);

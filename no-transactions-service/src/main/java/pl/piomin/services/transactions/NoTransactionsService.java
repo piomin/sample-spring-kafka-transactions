@@ -34,4 +34,15 @@ public class NoTransactionsService {
         }
     }
 
+//    @Bean
+//    ConcurrentKafkaListenerContainerFactory<Integer, String>
+//    kafkaListenerContainerFactory(ConsumerFactory<Integer, String> consumerFactory) {
+//        ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
+//                new ConcurrentKafkaListenerContainerFactory<>();
+//        factory.setConsumerFactory(consumerFactory);
+//        factory.setConcurrency(3);
+//        factory.getContainerProperties().setAckMode(ContainerProperties.AckMode.RECORD);
+//        return factory;
+//    }
+
 }

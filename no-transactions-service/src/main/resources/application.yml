@@ -14,14 +14,5 @@ spring:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
   output.ansi.enabled: ALWAYS
 
-
-#  json:
-#    use:
-#      type:
-#        headers: false
-#    value:
-#      default:
-#        type: pl.piomin.services.common.model.Order
-
 logging:
   pattern.console: "%clr(%d{HH:mm:ss.SSS}){blue} %clr(---){faint} %clr([%18.18t]){yellow} %clr(:){red} %clr(%m){faint}%n"
