@@ -24,7 +24,7 @@
     <packaging>pom</packaging>
 
     <properties>
-        <java.version>19</java.version>
+        <java.version>20</java.version>
         <sonar.projectKey>piomin_sample-spring-kafka-transactions</sonar.projectKey>
         <sonar.organization>piomin</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
